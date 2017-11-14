@@ -16,3 +16,16 @@ To get passwords modified over 1 year ago:
 ```shell
 $ get-older-than 1 year ago
 ```
+
+## `get-ages`
+List all passwords from oldest to newest and print last change date
+
+### Examples:
+```shell
+$ get-ages
+personal/amazon     - 3 years ago
+work/aws/my-product - 11 months ago
+personal/github     - 1 month ago
+personal/keybase    - 32 hours ago
+work/stripe         - 11 minutes ago
+```
