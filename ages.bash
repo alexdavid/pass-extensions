@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+check_sneaky_paths "$path"
+
 function formatEntry {
   FILE="$1"
   
