@@ -4,11 +4,19 @@ check_sneaky_paths "$path"
 
 function formatEntry {
   FILE="$1"
-  
-  ISO8601_DATE=$(pass git log -n 1 --pretty=format:%aI -- "$FILE")
-  HUMAN_DATE=$(pass git log -n 1 --pretty=format:%cr -- "$FILE")
 
-  printf "%s,%s,%s\n" "$ISO8601_DATE" "$FILE" "$HUMAN_DATE"
+  DATES=$(pass git log --format="%cr" -- "$FILE")
+  MODIFIED=$(head -1 <<< "$DATES")
+  CREATED=$(tail -1 <<< "$DATES")
+  LAST_GENERATED=$(pass git log -n 1 --format="%cr" --grep="generated" -- "$FILE")
+  SORT="$(pass git log -n 1 --format="%aI" --grep="generated" -- "$FILE")"
+
+  if [ -z "$LAST_GENERATED" ]; then
+    LAST_GENERATED="-"
+    SORT="0"
+  fi
+
+  printf "%s;%s;%s;%s;%s\n" "$SORT" "${FILE%.*}" "$LAST_GENERATED" "$MODIFIED" "$CREATED"
 }
 
 function mapEntries {
@@ -21,5 +29,5 @@ pass git ls-files |\
   grep '.gpg$' |\
   mapEntries |\
   sort |\
-  sed -E 's/[^,]+,([^,]+)\.gpg/\1/' |\
-  column -t -s ',' -o ' - ' /dev/stdin
+  sed -E 's/^[^;]+;//' |\
+  column -t -s ';' -o ' | ' -N "Password,Last Generated,Last Modified,Created" /dev/stdin

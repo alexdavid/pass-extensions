@@ -7,16 +7,18 @@ To install copy the scripts you want to `~/.password-store/.extensions`
 ---
 
 ## `pass ages`
-List all passwords from oldest to newest and print last change date
+List all passwords with their last generated date, last modified date, and created date
+If the commit message contains the word `generated` it assumes that commit generated a new password
 
 ### Examples:
 ```shell
 $ pass ages
-personal/amazon     - 3 years ago
-work/aws/my-product - 11 months ago
-personal/github     - 1 month ago
-personal/keybase    - 32 hours ago
-work/stripe         - 11 minutes ago
+Password            | Last Generated | Last Modified  | Created
+work/aws/my-product | -              | 11 months ago  | 1 year, 2 months ago
+personal/keybase    | -              | 32 hours ago   | 32 hours ago
+personal/amazon     | 3 years ago    | 3 years ago    | 3 years ago
+personal/github     | 1 month ago    | 2 weeks ago    | 5 years ago
+work/stripe         | 11 minutes ago | 11 minutes ago | 2 weeks ago
 ```
 
 ## `pass insecure`
