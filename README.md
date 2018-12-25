@@ -19,6 +19,14 @@ personal/keybase    - 32 hours ago
 work/stripe         - 11 minutes ago
 ```
 
+## `pass insecure`
+List all passwords with a non-secure protocol for the `URL` field
+### Example:
+```
+$ pass insecure
+Insecure protocol -- personal/github (URL: http://github.com/)
+```
+
 ## `pass older-than [age]`
 Gets passwords that haven't been changed since the passed date/commit
 
