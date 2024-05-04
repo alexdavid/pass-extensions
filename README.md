@@ -1,3 +1,10 @@
+# This repository has moved to [sourcehut](https://git.sr.ht/~alexdavid/pass-extensions)
+
+I am no longer pushing updates to this repo. Please visit [its new home on
+sourcehut](https://git.sr.ht/~alexdavid/pass-extensions) for future updates.
+
+---
+
 # Password-Store Scripts
 
 A list of various scripts that compliment [pass](https://www.passwordstore.org/).
